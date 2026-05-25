@@ -1,0 +1,10 @@
+#gatos img {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+
+#gatos li {
+  margin-top: 20px;
+  border-bottom: 1px solid #ccc;
+}
