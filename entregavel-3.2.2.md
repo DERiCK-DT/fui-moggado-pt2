@@ -6,7 +6,9 @@ Assuma o seguinte vetor de objetos de gatos:
 
 ```
 
-4. Crie um botão para pintar de vermelho o fundo dos itens de gatos que soltam pelo
+// 2. Mapeie o vetor de gatos para dentro desta div (deve mostrar apenas imagem e raça);
+// 3. Ao clicar, faça aparecer em um alert um texto informando origem, ano de reconhecimento e temperamento;
+
 5. Crie um botão para pintar de azul o fundo dos itens de gato cuja origem são os Estados Unidos
 6. Crie um campo de texto e um botão filtrar. Ao pressionar o botão, pinte de roxo o fundo dos itens de gato que possuem o texto inserido no campo de texto (pesquisa nos campos raça, origem e temperamento). Sua busca deve ser case-insensitive. Utilize os método toLowerCase e includes. Exemplo:
 

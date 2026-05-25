@@ -4,7 +4,15 @@
   cursor: pointer;
 }
 
-#gatos li {
+#gatos {
+  width: 350px;
+  height: 5500px;
   margin-top: 20px;
-  border-bottom: 1px solid #ccc;
+  padding: 6px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ccc;
 }

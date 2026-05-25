@@ -244,15 +244,17 @@ const catCatalog = [
 // 2. Mapeie o vetor de gatos para dentro desta div (deve mostrar apenas imagem e raça);
 // 3. Ao clicar, faça aparecer em um alert um texto informando origem, ano de reconhecimento e temperamento;
 // 4. Crie um botão para pintar de vermelho o fundo dos itens de gatos que soltam pelo
+// 5. Crie um botão para pintar de azul o fundo dos itens de gato cuja origem são os Estados Unidos
 
 const gatosDiv = document.querySelector("#gatos");
 const btnSoltamPelo = document.querySelector("#btn-soltam");
+const btnAmericat = document.querySelector("#btn-americano");
 
 const gatinhoEls = catCatalog.map(
   ({ raca, imagem, origem, anoReconhecimento, temperamento }) => {
     const gatinhoEl = document.createElement("div");
     gatinhoEl.className = "gatos";
-    gatinhoEl.innerHTML = `<img src="${imagem}" <span>${raca}</span>`;
+    gatinhoEl.innerHTML = `<img src="${imagem}">  <span>${raca}</span>`;
     gatinhoEl.onclick = () =>
       alert(
         `Origem: ${origem}, reconhecido em ${anoReconhecimento}. ${temperamento}.`,
@@ -264,10 +266,32 @@ const gatinhoEls = catCatalog.map(
 gatosDiv.append(...gatinhoEls);
 
 function fundoVermelho() {
-  const gatosDivs = document.querySelectorAll(".gatos");
-  gatosDivs.forEach((gatosDiv) => {
-    gatosDiv.style.backgroundColor = "red";
-  });
+  catCatalog
+    .filter((gato) => gato.soltaPelo)
+    .map((gato) => gato.raca)
+    .forEach((raca) => {
+      const el = [...document.querySelectorAll(".gatos")].find(
+        (div) => div.querySelector("span").textContent === raca,
+      );
+      el.style.backgroundColor = "red";
+    });
 }
 
+// sendo sincero, esse lance aqui de cima foi muuuito alem dos meus conhecimentos, to aprendendo agora, pesquisando e lendo bastante, mas não chegaria em nenhum resultado nem perto disso sozinho
+
+function fundoAzul() {
+  catCatalog
+    .filter((gato) => gato.origem === "Estados Unidos")
+    .map((gato) => gato.raca)
+    .forEach((raca) => {
+      const el = [...document.querySelectorAll(".gatos")].find(
+        (div) => div.querySelector("span").textContent === raca,
+      );
+      el.style.backgroundColor = "blue";
+    });
+}
+
+// pra repetir nesse aqui agora foi sereno, entendi a lógica, mas tirar isso do 0 ainda não rola
+
 btnSoltamPelo.onclick = fundoVermelho;
+btnAmericat.onclick = fundoAzul;
