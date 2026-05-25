@@ -9,10 +9,17 @@
   height: 5500px;
   margin-top: 20px;
   padding: 6px;
-
+  background-color: #ccc;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: #ccc;
+}
+
+body {
+  background-color: #666;
+}
+
+#input-filtro {
+  width: 270px;
 }

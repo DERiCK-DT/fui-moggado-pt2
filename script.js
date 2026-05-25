@@ -249,6 +249,8 @@ const catCatalog = [
 const gatosDiv = document.querySelector("#gatos");
 const btnSoltamPelo = document.querySelector("#btn-soltam");
 const btnAmericat = document.querySelector("#btn-americano");
+const btnFiltro = document.querySelector("#btn-filtro");
+const inputFiltro = document.querySelector("#input-filtro");
 
 const gatinhoEls = catCatalog.map(
   ({ raca, imagem, origem, anoReconhecimento, temperamento }) => {
@@ -293,5 +295,62 @@ function fundoAzul() {
 
 // pra repetir nesse aqui agora foi sereno, entendi a lógica, mas tirar isso do 0 ainda não rola
 
+function fundoRoxo() {
+  const textoFiltro = inputFiltro.value.toLowerCase();
+
+  catCatalog
+    .filter(
+      (gato) =>
+        gato.raca.toLowerCase().includes(textoFiltro) ||
+        gato.origem.toLowerCase().includes(textoFiltro) ||
+        gato.temperamento.toLowerCase().includes(textoFiltro),
+    )
+    .map((gato) => gato.raca)
+    .forEach((raca) => {
+      const el = [...document.querySelectorAll(".gatos")].find(
+        (div) => div.querySelector("span").textContent === raca,
+      );
+      el.style.backgroundColor = "purple";
+    });
+}
+// essa aqui eu passei longe construir sozinho, entendo o que rolou mas to longe de chegar nisso ainda
+
 btnSoltamPelo.onclick = fundoVermelho;
 btnAmericat.onclick = fundoAzul;
+btnFiltro.onclick = fundoRoxo;
+
+// 7. Filtre os gatos reconhecidos depois dos anos 2000;
+
+const novos = catCatalog.filter((p) => p.anoReconhecimento >= 2000);
+console.log(novos);
+
+// 8. Qual a média dos anos de reconhecimento dos gatos?
+
+const anoss = catCatalog.map((p) => p.anoReconhecimento);
+const soma = anoss.reduce((acc, ano) => acc + ano, 0);
+const calcMedia = soma / catCatalog.length;
+console.log(calcMedia);
+
+// CONSEGUI FAZER UM REDUCE SOZINHO VAMOOOOO \ O /
+//                                             |
+//                                            / \
+
+// 9. Quantos gatos cuja origem não é dos Estados Unidos não soltam pelo?
+
+const gatos9 = catCatalog.filter(
+  (p) => p.origem != "Estados Unidos" && p.soltaPelo === false,
+);
+console.log(gatos9.length);
+
+// tranquilo esse
+
+// 10. Pergunte para o usuário via prompt qual gato ele quer ver (lá ele). Baseado na raça informada, redirecione o usuário para o link da imagem.
+
+const qualGato = prompt("Qual gato você quer ver?");
+const esseGato = catCatalog.find(
+  (p) => p.raca.toLowerCase() === qualGato.toLowerCase(),
+);
+
+window.location.href = esseGato.imagem;
+
+// esse nao foi facil mas foi possível de fazer, foi divertido
